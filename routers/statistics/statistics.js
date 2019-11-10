@@ -64,7 +64,7 @@ statisticsRouter.get('/managment', (req, res, next) => {
 });
 
 statisticsRouter.get('/user', (req, res, next) => {
-    authutility.tokenBaseAuth("admin", req, res, next)
+    authutility.tokenBaseAuth("both", req, res, next)
 }, (req, res) => {
     if (req.userData == undefined) {
         console.log("Wrong token string");
