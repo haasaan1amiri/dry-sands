@@ -3,7 +3,7 @@ const Joi = require('joi');
 
 const myQuery = require('../../db/mongooseQuery');
 const authutility = require('../../authorization/authUtility');
-
+const TAG = "Payment ";
 
 
 const addNewPaymentCheck = (input) => {
@@ -118,8 +118,10 @@ paymentRouter.post('/newpayment/add', (req, res, next) => {
 }, (req, res) => {
     if (req.userData == undefined) {
         res.status(401).send("Wrong token string");
+        console.log(TAG+"Token fail");
     } else if (req.body == undefined) {
         res.status(401).send('Post param not excited');
+        console.log(TAG+"Post param not excited");
     } else {
         const username = req.userData.username;
         const password = req.userData.password;
@@ -166,12 +168,15 @@ paymentRouter.post('/newpayment/add', (req, res, next) => {
                     
                 } else {
                     res.status(401).send("Wrong post object");
+                    console.log(TAG+"Wrong post object "+ addNewPaymentCheck(postParam));
                 }
             } else {
                 res.status(401).send("Wrong username and password");
+                console.log(TAG+"Wrong username and password ")
             }
         } else {
             res.status(401).send("Not username and password");
+            console.log(TAG+"Not username and password ")
         }
     }
 });
