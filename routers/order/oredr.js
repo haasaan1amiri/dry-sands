@@ -125,7 +125,11 @@ const acceptOrderDB = (order) => {
                         console.log(r.modifiedCount);
                         var debt = newOrder.totalAmount - newOrder.payedAmount;
                         myQuery.addDebtToUser(newOrder.user, debt).exec().then((user) => {
-                            resolve(newOrder);
+                            myQuery.getOrderUserExpand(newOrder._id).exec().then((orderNew)=>{
+                                resolve(orderNew);
+                            }).catch((err)=>{
+                                reject("Error in get order form db " + err);
+                            })
                         }).catch((err) => {
                             reject("Error in change user debt because " + err);
                         })

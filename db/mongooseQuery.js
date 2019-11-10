@@ -131,7 +131,13 @@ var getAllOrders = () => {
     }).populate('user');
 };
 
-
+var populateOrder = (id)=>{
+    return orderModel.find({
+        _id: id
+    }, {
+        weekNumber: 0
+    }).populate('user');
+}
 var getMyOrder = (myId) => {
     return orderModel.find({
         action: true,
@@ -829,5 +835,6 @@ module.exports = {
     getUserStatisticsMonth: userStaMonth,
     getMyOrders: getMyOrder,
     getMyTempOrder: getMyTOrder,
-    getUserGlobalInfo: getGUInfo
+    getUserGlobalInfo: getGUInfo,
+    getOrderUserExpand:populateOrder
 };
