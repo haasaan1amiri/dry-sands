@@ -10,7 +10,7 @@ const addNewPaymentCheck = (input) => {
     const schema = {
         orderNumber: Joi.string().regex(/^[0-9a-fA-F]{24}$/).required(),
         amount: Joi.number().positive().required(),
-        information: Joi.string().required()
+        information: Joi.string()
     }
     const result = Joi.validate(input, schema);
     if (result.error) {
