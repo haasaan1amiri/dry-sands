@@ -442,7 +442,7 @@ orderRouter.post('/delete/formstorage', (req, res, next) => {
             if (username === "android" && password === "admin123") {
                 var result = delStroCheck(postParam);
                 if (result == "OK") {
-                    myQuery.deleteOrderFromStore(postParam.orderId, flase).exec().then((newOrder) => {
+                    myQuery.deleteOrderFromStore(postParam.orderId, false).exec().then((newOrder) => {
                         res.status(200).send("Deleted successfully");
                     }).catch((message) => {
                         res.status(501).send(message);
